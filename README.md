@@ -1,74 +1,44 @@
-# WUWA Project
+# 명조:워더링 웨이브
 
-팀 프로젝트로 진행한 오픈월드 RPG 3D 게임 프로젝트 중 제가 맡았던 코드만 따로 정리한 저장소입니다.
-
-원본 프로젝트에는 팀 공용 에셋, 애니메이션 데이터, 사운드, 모델, 외부 라이브러리 등이 포함되어 있어서 전체 공개는 하지 않았습니다.  
-이 저장소는 빌드나 실행 목적보다는, 제가 담당했던 플레이어/애니메이션 관련 구현을 확인할 수 있도록 정리한 포트폴리오용 코드 아카이브입니다.
+팀 프로젝트로 진행한 오픈월드 RPG 3D 게임 프로젝트 중 제가 맡았던 코드만 따로 정리한 repository입니다.
 
 ## 프로젝트 정보
 
 - 개발 기간: 2026.04 - 2026.05
+- 담당 역할: 애니메이션 / 플레이어
 - 개발 인원: 6명
-- 담당 역할: 애니메이션, 플레이어
 - 개발 환경: C++, DirectX11
 
 ## 담당 구현
 
-### 캐릭터 / 전투
+### 캐릭터 Locomotion 및 애니메이션 시스템
 
-![Locomotion](images/WUWA-Project-Animation_2.gif)
+<img src="images/locomotion.gif" width="640">
 
-플레이어 캐릭터의 기본 동작과 전투 상태를 구현했습니다.
+### 회피 시스템
 
-`CRole_Base`를 중심으로 이동, 점프, 피격, 공격, 스킬, QTE, 캐릭터 교체 같은 공통 로직을 구성했고, 캐릭터별 클래스에서 각 캐릭터의 공격 입력과 스킬 상태를 확장했습니다.
+<img src="images/dodge.gif" width="640">
 
-포함된 캐릭터 코드:
+### 전투 액션 및 입력 큐 시스템
 
-- `CRole_Base`
-- `CRole_Qianxia`
-- `CRole_Aimisi`
-- `CRole_AimisiGD`
-- `CRole_GD`
-- `CRole_Nvzhu`
+<img src="images/combat.gif" width="640">
 
-### 카메라
+### 전투 보정 및 연출 시스템
 
-`CCharacterCamera`에서는 캐릭터 기준 Pitch/Yaw/Roll 전환, 처형 연출 시점 전환 등을 다루고 있습니다.  
+<img src="images/combat_correction.gif" width="640">
 
-### 무기
+### 캐릭터 전환
 
-캐릭터 애니메이션 이벤트와 무기 오브젝트가 연동되도록 구현했습니다.
+<img src="images/character_switch.gif" width="640">
 
-`CWeapon`을 기반으로 캐릭터별 무기 클래스를 나누었고, 애니메이션 타이밍에 맞춰 무기 표시와 애니메이션 전환이 가능하도록 구성했습니다.
+### 무기 연동
 
-포함된 무기 코드:
+<img src="images/weapon.gif" width="640">
 
-- `CWeapon`
-- `CWeapon_Qianxia_Jiandao`
-- `CWeapon_Aimisi_Huatong`
-- `CWeapon_Levi_Yuegong`
-- `CWeapon_Paraglider`
+### Animation Tool 및 런타임 최적화
 
-### 애니메이션
+<img src="images/animation_tool.png" width="640">
 
-애니메이션 재생과 이벤트 처리를 위한 런타임 코드를 구현했습니다.
+## 참고
 
-`CAnimationController`에서 애니메이션 재생, 전환, 블렌딩, 루트모션, 가산 애니메이션, 이벤트 호출 등을 처리하고, `CAnimationInfo`와 `CAsset_Animation`에서 애니메이션 데이터 구조와 로딩 흐름을 관리합니다.
-
-애니메이션 데이터 자체는 팀 공용 자산이기 때문에 이 저장소에는 포함하지 않았습니다.
-
-### 에디터 UI
-
-애니메이션 확인과 편집을 위한 ImGui 기반 UI/UX 를 구현했습니다.
-
-`CImGuiAnimation`에서는 애니메이션 클립을 확인하고, 재생 상태나 이벤트 정보를 편집할 수 있도록 구성했습니다.
-
-## 제외한 것
-
-아래 항목들은 팀 공용 자산이거나 공개 범위에 포함되지 않아 제외했습니다.
-
-- 모델, 텍스처, 사운드, 프리팹
-- `.anim`, `.animfsm` 애니메이션 데이터
-- 외부 라이브러리와 바이너리 파일
-- 빌드 산출물
-- 원본 솔루션/프로젝트 전체 구성
+팀 공용 에셋, 애니메이션 데이터, 외부 라이브러리, 빌드 산출물은 포함하지 않았습니다.  
