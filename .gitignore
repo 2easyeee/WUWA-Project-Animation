@@ -43,6 +43,7 @@ Asset/
 *.prefab
 *.material
 *.png
+!images/*.png
 *.dds
 *.wav
 *.wem
